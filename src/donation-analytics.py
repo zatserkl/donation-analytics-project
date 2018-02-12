@@ -62,11 +62,12 @@ if __name__ == "__main__":
     nlines_empty_zip_code = []
 
     nlines_max = 10
-    nlines = 0
-    for line in reader:
+    for nlines, line in enumerate(reader):
+
         if len(line[10]) == 0:
             # print("-- empty zip_code in line", nlines)
             nlines_empty_zip_code.append(nlines)
+
         if nlines < nlines_max:
             pass
             # print(line)
@@ -74,39 +75,31 @@ if __name__ == "__main__":
             # convert zip_code to int
 
             try:
-                # zip_code_str = line[10][:5]
-                # zip_code = int(zip_code_str)
                 zip_code = int(line[10][:5])
             except ValueError as e:
-                # print("--- Error castling zip_code as int for", zip_code_str)
                 print("--- Error castling zip_code as int for", line[10])
                 continue
-
-            # good ZIP_CODE here
-
-            # print(line[10], "zip_code =", zip_code)
         
         # process the line
-        print("zip_code =", zip_code)
 
         name = line[7]
         committee = line[0]
-        # zip_code = line[10]
         amount = line[14]
         
         donor = DonorContribution(committee, zip_code, amount)
         # print(donor)
 
         if name in donors_repeat:
-            print("  -- append to key", name)
+            # print("  -- append to key", name)
             donors_repeat[name].append(donor)
         else:
             if name in donors_all:
-                print("  ++ copy from donors_all name =", name)
+                # print("  ++ copy from donors_all name =", name)
                 donors_repeat[name].append(donors_all[name])
+                # print("     -- and append the current entry for name", name)
                 donors_repeat[name].append(donor)
             else:
-                print("  .. add name", name, "to donors_all")
+                # print("  .. add name", name, "to donors_all")
                 donors_all[name] = donor
 
         nlines += 1
@@ -115,7 +108,14 @@ if __name__ == "__main__":
     print("found", len(nlines_empty_zip_code), "lines with empty zip code")
     print("nlines_empty_zip_code[:10]:", nlines_empty_zip_code[:10])
 
-    print("donors_all:\n", donors_all)
-    print("donors_repeat:\n", donors_repeat)
+    # print("donors_all:\n", donors_all)
+    # print("donors_repeat:\n", donors_repeat)
+
+    print("\nThe first donors:")
+    for i, donor in enumerate(donors_repeat.items()):
+        if i > 10:
+            break
+        # print(donor[0], donor[1])
+        print(donor[0], "# of donations:", len(donor[1]))
 
     # input("<CR> to quit ")
