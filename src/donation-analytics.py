@@ -8,16 +8,17 @@ from collections import defaultdict, Counter
 from numpy import nan as NA
 
 class DonorContribution:
-    def __init__(self, committee, zip_code, amount):
+    def __init__(self, committee, zip_code, amount, year):
         self.committee = committee
         self.zip_code = zip_code
         self.amount = amount
+        self.year = year
 
     def __repr__(self):
-        return committee + " " + str(zip_code) + " " + str(amount)
+        return committee + " " + str(zip_code) + " " + str(amount) + " " + str(year)
 
     def __str__(self):
-        return committee + " " + str(zip_code) + " " + str(amount)
+        return committee + " " + str(zip_code) + " " + str(amount) + " " + str(year)
 
 # class Reader:
 
@@ -62,7 +63,12 @@ if __name__ == "__main__":
     nlines_empty_zip_code = []
 
     nlines_max = 10
+
+    valid_donations = 0
+
     for nlines, line in enumerate(reader):
+
+        # process the ZIP_CODE
 
         if len(line[10]) == 0:
             # print("-- empty zip_code in line", nlines)
@@ -77,16 +83,28 @@ if __name__ == "__main__":
             try:
                 zip_code = int(line[10][:5])
             except ValueError as e:
-                print("--- Error castling zip_code as int for", line[10])
+                # print("--- Error castling zip_code as int for", line[10])
                 continue
+
+        # process the year: convert to int
+        try:
+            year = int(line[13][4:])
+        except ValueError as e:
+            # print("--- Error castling year as int for", line[13])
+            continue
+
+        # process the amount: convert to float
+        try:
+            amount = int(line[14])
+        except ValueError as e:
+            # print("--- Error castling amount as float for", line[14])
+            continue
         
-        # process the line
+        valid_donations += 1
 
         name = line[7]
         committee = line[0]
-        amount = line[14]
-        
-        donor = DonorContribution(committee, zip_code, amount)
+        donor = DonorContribution(committee, zip_code, amount, year)
         # print(donor)
 
         if name in donors_repeat:
@@ -115,7 +133,10 @@ if __name__ == "__main__":
     for i, donor in enumerate(donors_repeat.items()):
         if i > 10:
             break
-        # print(donor[0], donor[1])
+        # print(donor[0], "#donors:", len(donor[1]), "list:", donor[1])
         print(donor[0], "# of donations:", len(donor[1]))
+
+    total_repeat = sum([len(x) for x in donors_repeat.values()])
+    print("total_repeat =", total_repeat, "out of total", valid_donations)
 
     # input("<CR> to quit ")
