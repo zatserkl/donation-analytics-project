@@ -31,14 +31,23 @@ Algorithm
 1) read current line
 2) create a donor_id
 3) find if the donor is a repeated donor (use set)
+
         if not:
+
                 put the id into set.
+
                 Goto the next line.
+
         if yes:
+
                 create a recipient_id
+
                 process the recipient_id:
+
                         add recipient_id into dictionary {recipient_id: list(donation)}
+
                         calculate percentile
+
                         write the row into output file
                 
 
