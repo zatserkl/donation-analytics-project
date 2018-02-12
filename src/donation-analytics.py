@@ -104,6 +104,9 @@ if __name__ == "__main__":
 
     fname_itcont = sys.argv[1]
 
+    percentile = 30
+    print("\nhardcoded percentile = ", percentile, "\n")
+
     try:
         file_itcont = open(fname_itcont, 'r')
 
@@ -112,6 +115,8 @@ if __name__ == "__main__":
         exit(0)
 
     reader = csv.reader(file_itcont, delimiter='|')
+
+    writer = csv.writer(sys.stdout, delimiter='|')
 
     donors_all = defaultdict(list)      # all donors
     donors_repeat = defaultdict(list)   # repeat donors
@@ -174,58 +179,34 @@ if __name__ == "__main__":
 
         # create a donor_id
         donor_id = donorID(donor_name, zip_code)
-        print("--- donor_id:", donor_id)
+        # print("--- donor_id:", donor_id)
         if donor_id in donors_all_set:
             # process the donation
             pass
             recipient_id = recipientID(recipient, zip_code, year)
-            print("+++ recipient_id:", recipient_id)
+            # print("+++ recipient_id:", recipient_id)
+            recipients_all[recipient_id].append(amount)
+            # output_line
+            # percentile calculation
+            n = len(recipients_all[recipient_id])
+            index = math.ceil(n * percentile / 100) - 1
+            # print("index =", index)
+            recipients_all[recipient_id].sort() # sort in increasing order
+            percent = recipients_all[recipient_id][index]
+            # print("percent =", percent)
+            
+            writer.writerow((recipient, zip_code, year, percent, amount,
+                            len(recipients_all[recipient_id])))
         else:
             donors_all_set.add(donor_id)    # register the donor
 
         ################## end of processing ##################
-
-        donor = DonorContribution(recipient, zip_code, amount, year)
-        # print(donor)
-        id = RecipientID().id(recipient, zip_code, year)
-        # print(RecipientID().id(recipient, zip_code, year))
-        # print(id)
-
-        if donor_name in donors_repeat:
-            # print("  -- append to key", donor_name)
-            donors_repeat[donor_name].append(donor)
-            ostream[id].append([recipient, zip_code, year, percentale, amount])
-            ##########ostream = OStream # TODO
-        else:
-            if donor_name in donors_all:
-                # print("  ++ copy from donors_all donor_name =", donor_name)
-                donors_repeat[donor_name].append(donors_all[donor_name])
-                # print("     -- and append the current entry for donor_name", donor_name)
-                donors_repeat[donor_name].append(donor)
-            else:
-                # print("  .. add donor_name", donor_name, "to donors_all")
-                donors_all[donor_name] = donor
 
         nlines += 1
 
     print("read", nlines, "lines")
     print("found", len(nlines_empty_zip_code), "lines with empty zip code")
     print("nlines_empty_zip_code[:10]:", nlines_empty_zip_code[:10])
-
-    # print("donors_all:\n", donors_all)
-    # print("donors_repeat:\n", donors_repeat)
-
-    print("\nThe first donors:")
-    for i, donor in enumerate(donors_repeat.items()):
-        if i > 10:
-            break
-        # print(donor[0], "#donors:", len(donor[1]), "list:", donor[1])
-        print(donor[0], "# of donations:", len(donor[1]))
-
-    total_repeat = sum([len(x) for x in donors_repeat.values()])
-    print("total_repeat =", total_repeat, "out of total", valid_donations)
-    print("len(donors_repeat.keys()) =", len(donors_repeat.keys()),
-          "len(donors_all.keys()) =", len(donors_all.keys()))
 
     print("\nNew Algoritm\n")
 
