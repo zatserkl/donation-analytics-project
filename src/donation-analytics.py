@@ -15,10 +15,10 @@ class DonorContribution:
         self.year = year
 
     def __repr__(self):
-        return recipient + " " + str(zip_code) + " " + str(amount) + " " + str(year)
+        return recipient + " " + zip_code + " " + str(amount) + " " + str(year)
 
     def __str__(self):
-        return recipient + " " + str(zip_code) + " " + str(amount) + " " + str(year)
+        return recipient + " " + zip_code + " " + str(amount) + " " + str(year)
 
 # class Reader:
 
@@ -80,10 +80,8 @@ if __name__ == "__main__":
 
             # convert zip_code to int
 
-            try:
-                zip_code = int(line[10][:5])
-            except ValueError as e:
-                # print("--- Error castling zip_code as int for", line[10])
+            zip_code = line[10][:5]
+            if len(zip_code) < 5:
                 continue
 
         # process the year: convert to int
