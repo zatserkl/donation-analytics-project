@@ -1,5 +1,5 @@
 # Table of Contents
-0. [Draft] (README.md#Draft)
+0. [Draft] (README.md#draft)
 1. [Introduction](README.md#introduction)
 2. [Challenge summary](README.md#challenge-summary)
 3. [Details of challenge](README.md#details-of-challenge)
@@ -17,7 +17,7 @@
 
 A Method to select and other remarks.
 
-The number of repeat donors should be much smaller than the total number of donors (-- Investigate this),
+The number of repeat donors should be much smaller than the total number of donors (-- investigate this),
 so the list of repeat donors should be checked first. 
 
 # Introduction
