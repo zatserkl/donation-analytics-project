@@ -8,17 +8,17 @@ from collections import defaultdict, Counter
 from numpy import nan as NA
 
 class DonorContribution:
-    def __init__(self, committee, zip_code, amount, year):
-        self.committee = committee
+    def __init__(self, recipient, zip_code, amount, year):
+        self.recipient = recipient
         self.zip_code = zip_code
         self.amount = amount
         self.year = year
 
     def __repr__(self):
-        return committee + " " + str(zip_code) + " " + str(amount) + " " + str(year)
+        return recipient + " " + str(zip_code) + " " + str(amount) + " " + str(year)
 
     def __str__(self):
-        return committee + " " + str(zip_code) + " " + str(amount) + " " + str(year)
+        return recipient + " " + str(zip_code) + " " + str(amount) + " " + str(year)
 
 # class Reader:
 
@@ -103,8 +103,8 @@ if __name__ == "__main__":
         valid_donations += 1
 
         name = line[7]
-        committee = line[0]
-        donor = DonorContribution(committee, zip_code, amount, year)
+        recipient = line[0]
+        donor = DonorContribution(recipient, zip_code, amount, year)
         # print(donor)
 
         if name in donors_repeat:
