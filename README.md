@@ -1,6 +1,6 @@
 # Table of Contents
-0. [Draft] (README.md#draft)
-1. [Introduction](README.md#introduction)
+0. [Introduction](README.md#introduction)
+1. [Draft] (README.md#draft)
 2. [Challenge summary](README.md#challenge-summary)
 3. [Details of challenge](README.md#details-of-challenge)
 4. [Input files](README.md#input-files)
