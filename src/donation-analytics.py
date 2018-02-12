@@ -138,5 +138,7 @@ if __name__ == "__main__":
 
     total_repeat = sum([len(x) for x in donors_repeat.values()])
     print("total_repeat =", total_repeat, "out of total", valid_donations)
+    print("len(donors_repeat.keys()) =", len(donors_repeat.keys()),
+          "len(donors_all.keys()) =", len(donors_all.keys()))
 
     # input("<CR> to quit ")

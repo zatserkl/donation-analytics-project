@@ -20,8 +20,9 @@ A Method to select and other remarks.
 The number of repeat donors should be much smaller than the total number of donors (-- investigate this),
 so the list of repeat donors should be checked first. 
 
-I used the first 700,000 lines of the indiv18/itcont.txt and found that most of the donations come from the repeat donors:
+I used the first 700,000 lines of the indiv18/itcont.txt and found that most of the donations came from the repeat donors:
 The total number of donations from repeat donors is 556,495 out of 700,000.
+Also, the number of all donors is 269,426 while the number of repeat donors is smaller at 125,950.
 
 # Introduction
 You’re a data engineer working for political consultants whose clients are cash-strapped political candidates. They've asked for help analyzing loyalty trends in campaign contributions, namely identifying areas of repeat donors and calculating how much they're spending.
