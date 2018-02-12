@@ -21,8 +21,26 @@ The number of repeat donors should be much smaller than the total number of dono
 so the list of repeat donors should be checked first. 
 
 I used the first 700,000 lines of the indiv18/itcont.txt and found that most of the donations came from the repeat donors:
-The total number of donations from repeat donors is 556,495 out of 700,000.
-Also, the number of all donors is 269,426 while the number of repeat donors is smaller at 125,950.
+The total number of donations from repeat donors is 416,570 out of total 549,709 personal contributions.
+Also, the number of all donors is 236,294 while the number of repeat donors is smaller at 103,155.
+
+The file input/itcont.txt currently contains the first 500,000 lines of the indiv18/itcont.txt.
+
+Algorithm
+
+1) read current line
+2) create a donor_id
+3) find if the donor is a repeated donor (use set)
+        if not:
+                put the id into set.
+                Goto the next line.
+        if yes:
+                create a recipient_id
+                process the recipient_id:
+                        add recipient_id into dictionary {recipient_id: list(donation)}
+                        calculate percentile
+                        write the row into output file
+                
 
 # Introduction
 You’re a data engineer working for political consultants whose clients are cash-strapped political candidates. They've asked for help analyzing loyalty trends in campaign contributions, namely identifying areas of repeat donors and calculating how much they're spending.

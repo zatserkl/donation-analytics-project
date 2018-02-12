@@ -3,6 +3,7 @@
 import sys
 import csv
 import numpy as np
+import math
 
 from collections import defaultdict, Counter
 from numpy import nan as NA
@@ -20,7 +21,35 @@ class DonorContribution:
     def __str__(self):
         return recipient + " " + zip_code + " " + str(amount) + " " + str(year)
 
+
+class Recipient:
+    @staticmethod
+    def id(recipient, zip_code, year):
+        return (recipient, zip_code, year)
+
+
+class OStream:
+    def __init__(self, recipient, zip_code, year, amount):
+        pass
+        id = get_id(recipient, zip_code, year)
+        self.ostream[id].append(amount)
+
+        # calculate percentile and stream into output file
+        pvalue = percentile_value(percentile, amounts)
+        writer = csv.writer(sys.stdout)
+        writer.write(self.ostream[id], pvalue, sum(amounts), delimitor='|')
+
+    def get_id(self, recipient, zip_code, year):
+        return (recipient, zip_code, year)
+
+
+    def percentile_value(self, percentile, amounts):
+        n = len(amounts)
+        index = math.ceil(n * percentile / 100)
+        return amounts[index]
+
 # class Reader:
+
 
 def read_file(fname):
     fields_str = "CMTE_ID AMNDT_IND RPT_TP TRANSACTION_PGI IMAGE_NUM " \
@@ -36,6 +65,7 @@ def read_file(fname):
     print()
 
     # with open(fname) as file:
+
 
 if __name__ == "__main__":
 
@@ -59,6 +89,7 @@ if __name__ == "__main__":
 
     donors_all = defaultdict(list)      # all donors
     donors_repeat = defaultdict(list)   # repeat donors
+    ostream = defaultdict(list)         # dict to stream into output file
 
     nlines_empty_zip_code = []
 
@@ -68,8 +99,10 @@ if __name__ == "__main__":
 
     for nlines, line in enumerate(reader):
 
-        # process the ZIP_CODE
+        if len(line[15]) > 0:
+            continue            # this is not a person contribution
 
+        # for information purpose only
         if len(line[10]) == 0:
             # print("-- empty zip_code in line", nlines)
             nlines_empty_zip_code.append(nlines)
@@ -104,10 +137,15 @@ if __name__ == "__main__":
         recipient = line[0]
         donor = DonorContribution(recipient, zip_code, amount, year)
         # print(donor)
+        id = Recipient().id(recipient, zip_code, year)
+        # print(Recipient().id(recipient, zip_code, year))
+        # print(id)
 
         if name in donors_repeat:
             # print("  -- append to key", name)
             donors_repeat[name].append(donor)
+            ostream[id].append([recipient, zip_code, year, percentale, amount])
+            ##########ostream = OStream # TODO
         else:
             if name in donors_all:
                 # print("  ++ copy from donors_all name =", name)
