@@ -1,4 +1,5 @@
 # Table of Contents
+0. [Draft] (README.md#Draft)
 1. [Introduction](README.md#introduction)
 2. [Challenge summary](README.md#challenge-summary)
 3. [Details of challenge](README.md#details-of-challenge)
@@ -11,6 +12,13 @@
 10. [Testing your directory structure and output format](README.md#testing-your-directory-structure-and-output-format)
 11. [Instructions to submit your solution](README.md#instructions-to-submit-your-solution)
 12. [FAQ](README.md#faq)
+
+# Draft
+
+A Method to select and other remarks.
+
+The number of repeat donors should be much smaller than the total number of donors (-- Investigate this),
+so the list of repeat donors should be checked first. 
 
 # Introduction
 You’re a data engineer working for political consultants whose clients are cash-strapped political candidates. They've asked for help analyzing loyalty trends in campaign contributions, namely identifying areas of repeat donors and calculating how much they're spending.
