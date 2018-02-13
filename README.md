@@ -39,6 +39,4 @@ A brief investigation shows that most contributions come from the repeat donors.
 In the first 700K lines of indiv18/itcont.txt the total number of donations from repeat donors is 417K out of total 550K personal contributions.
 Also, the number of all donors is 237K while the number of repeat donors is smaller at 103K.
 
-Therefore, the code searches the dictionary with repeated donors first and runs search over set with all the donors if the search over dictionary of the repeat donors failed. It worth mentioning that both Python's set and dictionary are very efficient for the search with the time complexity of O(1).
-
 Therefore, the code searches the dictionary with repeated donors first. Then if the search over the dictionary of repeat donors fails, it runs search over the set with all donors. It worth mentioning that both Python's set and dictionary are very efficient for the search with the time complexity of O(1).
