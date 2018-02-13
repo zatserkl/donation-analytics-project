@@ -33,4 +33,4 @@ In the first 700K lines of indiv18/itcont.txt the total number of donations from
 
 Also, the number of all donors is 237K while the number of repeat donors is smaller at 103K.
 
-Therefore, the code search the dictionary with repeated donors first and search the set with all the donor IDs if the search in dictionary of the repeat donors failed. It worth mentioning that both Python's set and dictionary are very efficient for the search with the time complexity of O(1).
+Therefore, the code search the dictionary with repeated donors first and search the set with all the donors if the search in dictionary of the repeat donors failed. It worth mentioning that both Python's set and dictionary are very efficient for the search with the time complexity of O(1).
