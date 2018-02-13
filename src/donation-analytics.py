@@ -1,4 +1,4 @@
-# Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 8, 2018
+# Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 11, 2018
 
 import parser
 
@@ -95,12 +95,11 @@ if __name__ == "__main__":
     file_itcont.close()
     file_output.close()
 
+    # show nlines_max lines from the output file
+    nlines_max = 10
     with open(fname_output) as file_output:
         reader = csv.reader(file_output, delimiter='|')
-        nlines_max = 10
         for nlines, line in enumerate(reader):
             print(line)
             if nlines == nlines_max:
                 break
-
-    # input("<CR> to quit ")

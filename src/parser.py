@@ -1,4 +1,4 @@
-import csv
+# Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 12, 2018
 
 class LineParser:
     """ Parses line and provides basic checks.
@@ -30,6 +30,8 @@ class LineParser:
         OCCUPATION, TRANSACTION_DT, TRANSACTION_AMT, OTHER_ID, TRAN_ID, \
         FILE_NUM, MEMO_CD, MEMO_TEXT, SUB_ID = range(21)
 
+        # Basic checks, see chapter "Input files" of the Challenge description.
+
         if len(line[OTHER_ID]) > 0:
             if self.debug:
                 print("not empty OTHER_ID:", line[OTHER_ID])
@@ -59,10 +61,6 @@ class LineParser:
             if self.debug:
                 print("Malformed ZIP_CODE")
             return False
-
-        self.recipient = line[CMTE_ID]
-        self.donor_name = line[NAME]
-        self.zip_code = line[ZIP_CODE]
 
         try:
             self.amount = float(line[TRANSACTION_AMT])
@@ -95,5 +93,10 @@ class LineParser:
             if self.debug:
                 print("Malformed date")
             return False
+
+        self.recipient = line[CMTE_ID]
+        self.donor_name = line[NAME]
+        self.zip_code = line[ZIP_CODE]
+        self.year = line[TRANSACTION_DT][4:];
 
         return True
