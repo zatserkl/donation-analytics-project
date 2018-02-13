@@ -11,12 +11,12 @@ import parser
 
 def donorID(name, zip_code):
     """User is identified by its name and zip_code only"""
-    return (name, zip_code)
+    return name, zip_code
 
 
 def recipientID(recipient, zip_code, year):
     """recipient from zip_code at year"""
-    return (recipient, zip_code, year)
+    return recipient, zip_code, year
 
 
 if __name__ == "__main__":
