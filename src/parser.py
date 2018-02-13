@@ -6,7 +6,7 @@ class LineParser:
     """
 
     def __init__(self):
-        self.debug = True
+        self.debug = False
 
     def clear(self):
         """ Clear the data field before read of the line
@@ -66,10 +66,12 @@ class LineParser:
         self.zip_code = line[ZIP_CODE]
 
         try:
-            self.amount = line[TRANSACTION_AMT]
+            self.amount = float(line[TRANSACTION_AMT])
         except ValueError as e:
             if self.debug:
                 print("Malformed contribution amount:", e)
+            return False
+        if self.amount <= 0:
             return False
 
         try:

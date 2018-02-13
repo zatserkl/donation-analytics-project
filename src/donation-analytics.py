@@ -80,26 +80,25 @@ if __name__ == "__main__":
 
         # create a donor_id
         donor_id = donorID(donor_name, zip_code)
-        # print("--- donor_id:", donor_id)
+
         if donor_id in donors_all:
-            # process the donation
-            pass
+            # this is a repeat donor: process the donation
             recipient_id = recipientID(recipient, zip_code, year)
-            # print("+++ recipient_id:", recipient_id)
             recipients_all[recipient_id].append(amount)
-            # output_line
-            # percentile calculation
-            n = len(recipients_all[recipient_id])
-            index = math.ceil(n * percentile / 100) - 1
-            # print("index =", index)
+
+            # find the donation by percentile
+            n_donations = len(recipients_all[recipient_id])
+            index = math.ceil(n_donations * percentile / 100) - 1
+
             recipients_all[recipient_id].sort() # sort in increasing order
-            percent = recipients_all[recipient_id][index]
-            # print("percent =", percent)
+            percentile_amount = recipients_all[recipient_id][index]
             
-            writer.writerow((recipient, zip_code, year, percent, amount,
-                            len(recipients_all[recipient_id])))
+            amount_sum = sum(recipients_all[recipient_id])
+            writer.writerow((recipient, zip_code, year, percentile_amount,
+                             amount_sum, len(recipients_all[recipient_id])))
         else:
-            donors_all.add(donor_id)    # register the donor
+            # this is a first time donor
+            donors_all.add(donor_id)    # register the donor: place into set
 
     file_itcont.close()
     file_output.close()
