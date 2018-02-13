@@ -92,10 +92,12 @@ if __name__ == "__main__":
 
             recipients_all[recipient_id].sort() # sort in increasing order
             percentile_amount = recipients_all[recipient_id][index]
+            ipercentile_amount = int(percentile_amount + 0.50)
             
             amount_sum = sum(recipients_all[recipient_id])
-            writer.writerow((recipient, zip_code, year, percentile_amount,
-                             amount_sum, len(recipients_all[recipient_id])))
+            iamount_sum = int(amount_sum)
+            writer.writerow((recipient, zip_code, year, ipercentile_amount,
+                             iamount_sum, len(recipients_all[recipient_id])))
         else:
             # this is a first time donor
             donors_all.add(donor_id)    # register the donor: place into set
