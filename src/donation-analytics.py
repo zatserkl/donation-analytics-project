@@ -19,6 +19,17 @@ def get_recipient_id(recipient, zip_code, year):
     return recipient, zip_code, year
 
 
+def dollars_cents(amount):
+    """ Returns a string
+        100     for float numbers 100, 100. or 100.0
+        100.10  for the float number 100.10
+    """
+    if amount > int(amount):
+        return "{0:.2f}".format(amount)
+    else:
+        return "{0:.0f}".format(amount)
+
+
 if __name__ == "__main__":
 
     if len(sys.argv) < 3:
@@ -88,12 +99,12 @@ if __name__ == "__main__":
 
             recipients_all[recipient_id].sort()     # sort in increasing order
             percentile_amount = recipients_all[recipient_id][index]
-            ipercentile_amount = int(percentile_amount + 0.50)
+            percentile_amount_str = dollars_cents(percentile_amount)
 
             amount_sum = sum(recipients_all[recipient_id])
-            iamount_sum = int(amount_sum)
-            writer.writerow((recipient, zip_code, year, ipercentile_amount,
-                             iamount_sum, len(recipients_all[recipient_id])))
+            amount_sum_str = dollars_cents(amount_sum)
+            writer.writerow((recipient, zip_code, year, percentile_amount_str,
+                             amount_sum_str, len(recipients_all[recipient_id])))
         else:
             # this is a first time donor
             donors_all.add(donor_id)    # register the donor: place into set

@@ -28,6 +28,7 @@ class LineParser:
         self.clear()
 
         # set values to the local variables for the columns indices
+        # NB: the names were copied/pasted from the documentation
         (CMTE_ID, AMNDT_IND, RPT_TP, TRANSACTION_PGI, IMAGE_NUM,
          TRANSACTION_TP, ENTITY_TP, NAME, CITY, STATE, ZIP_CODE, EMPLOYER,
          OCCUPATION, TRANSACTION_DT, TRANSACTION_AMT, OTHER_ID, TRAN_ID,
@@ -72,6 +73,8 @@ class LineParser:
                 print("Malformed contribution amount:", e)
             return False
         if self.amount <= 0:
+            if self.debug:
+                print("Malformed TRANSACTION_AMT:", line[TRANSACTION_AMT])
             return False
 
         try:

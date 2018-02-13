@@ -30,6 +30,8 @@ Technically the code fills up a dictionary:
 
 The code uses contributions from the repeated donors only. To mark the donor as a repeat donor, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into Python's set. 
 
+Note: Following the procedure in the code challenge documentation we ignore the first contribution of each donor (because she/he was not a repeated donor at that time).
+
 After every update of the dictionary value (append the current contribution to the list of contributions), the code calculates a sum of the contributions, finds a contribution for the given percentile and streams the line into the output file.
 
 # Discussion
