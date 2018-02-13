@@ -1,5 +1,7 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 11, 2018
 
+from __future__ import print_function # to run this code under python27
+
 import parser
 
 import sys
@@ -37,7 +39,7 @@ if __name__ == "__main__":
                 percentile_str = file_percentile.readline()
                 percentile = int(percentile_str)
             except ValueError:
-                print("Malformed percentile value", percentile_str)
+                print("Malformed percentile value:", percentile_str)
                 exit(0)
 
     except IOError as e:
@@ -74,7 +76,7 @@ if __name__ == "__main__":
 
             # find the donation by percentile
             n_donations = len(recipients_all[recipient_id])
-            index = math.ceil(n_donations * percentile / 100) - 1
+            index = int(math.ceil(n_donations * percentile / 100.) - 1)
             if index < 0:
                 index = 0               # if pecentile == 0
             if index >= n_donations:

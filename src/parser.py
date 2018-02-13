@@ -1,5 +1,7 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 12, 2018
 
+from __future__ import print_function
+
 class LineParser:
     """ Parses line and provides basic checks.
     """
@@ -8,7 +10,7 @@ class LineParser:
         self.debug = False
 
     def clear(self):
-        """ Clear the data field before read of the line
+        """ Clear the data fields before read them from the line
         """
         self.recipient = ""
         self.donor_name = ""
@@ -17,9 +19,9 @@ class LineParser:
         self.amount = 0.
 
     def parse(self, line):
-        """ Takes the next line from the input file, assign variables and
+        """ Parses line from the input file, assigns variables and
             carries out basic checks.
-            Returns True for the valid line.
+            Returns True for the valid line, False otherwise.
         """
 
         self.clear()

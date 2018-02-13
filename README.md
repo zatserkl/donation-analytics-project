@@ -1,17 +1,18 @@
 # Table of Contents
-0. [Draft](README.md#Draft)
-1. [Introduction](README.md#introduction)
-2. [Challenge summary](README.md#challenge-summary)
-3. [Details of challenge](README.md#details-of-challenge)
-4. [Input files](README.md#input-files)
-5. [Output file](README.md#output-file)
-6. [Percentile computation](README.md#percentile-computation)
-7. [Example](README.md#example)
-8. [Writing clean, scalable and well-tested code](README.md#writing-clean-scalable-and-well-tested-code)
-9. [Repo directory structure](README.md#repo-directory-structure)
-10. [Testing your directory structure and output format](README.md#testing-your-directory-structure-and-output-format)
-11. [Instructions to submit your solution](README.md#instructions-to-submit-your-solution)
-12. [FAQ](README.md#faq)
+1. [Draft](README.md#Draft)
+2. [Python vesion](README.md#Pyhon-version)
+3. [Introduction](README.md#introduction)
+4. [Challenge summary](README.md#challenge-summary)
+5. [Details of challenge](README.md#details-of-challenge)
+6. [Input files](README.md#input-files)
+7. [Output file](README.md#output-file)
+8. [Percentile computation](README.md#percentile-computation)
+9. [Example](README.md#example)
+10. [Writing clean, scalable and well-tested code](README.md#writing-clean-scalable-and-well-tested-code)
+11. [Repo directory structure](README.md#repo-directory-structure)
+12. [Testing your directory structure and output format](README.md#testing-your-directory-structure-and-output-format)
+13. [Instructions to submit your solution](README.md#instructions-to-submit-your-solution)
+14. [FAQ](README.md#faq)
 
 # Draft
 
@@ -54,6 +55,14 @@ Use set as a fast container to keep id of the donors.
 
                         write the row into output file
                 
+# Python vesion
+
+I developed this code under Python 3.6.3:
+
+donation-analytics-project$ python --version
+Python 3.6.3 :: Anaconda custom (64-bit)
+
+The code seems to be runnable also under Python 2.7.14 (Anaconda) and Python 2.7.10 (macOS High Sierra).
 
 # Introduction
 You’re a data engineer working for political consultants whose clients are cash-strapped political candidates. They've asked for help analyzing loyalty trends in campaign contributions, namely identifying areas of repeat donors and calculating how much they're spending.
