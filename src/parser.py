@@ -1,6 +1,6 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 12, 2018
 
-from __future__ import print_function
+from __future__ import print_function # to run this code under python27
 
 class LineParser:
     """ Parses line and provides basic checks.

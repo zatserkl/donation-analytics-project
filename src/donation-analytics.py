@@ -2,11 +2,10 @@
 
 from __future__ import print_function # to run this code under python27
 
-import parser
-
-import sys
 import csv
 import math
+import parser # my module
+import sys
 
 from collections import defaultdict
 
@@ -23,7 +22,8 @@ def recipientID(recipient, zip_code, year):
 if __name__ == "__main__":
 
     if len(sys.argv) < 3:
-        print("Usage: python", __file__, "input_file percentile_file output_file")
+        print("Usage: python", __file__,
+              "input_file percentile_file output_file")
         exit(0)
 
     fname_itcont = sys.argv[1]
