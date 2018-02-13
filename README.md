@@ -46,4 +46,4 @@ Therefore, the code searches the dictionary with repeated donors first. Then if 
 
 # Remarks on the code implementation
 
-The variables for the column numbers in the module parser.py are in upper case intentionally because they were not typed but copied/pasted from the documentation (to avoid typos).
+The variables for the column numbers in the module parser.py are made in upper case intentionally because they were not typed but copied/pasted from the documentation (to avoid typos).
