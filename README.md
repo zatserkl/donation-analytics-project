@@ -15,6 +15,7 @@ The code seems to be runnable also with Python 2.7.14 (Anaconda) and Python 2.7.
 The code imports standard modules:
 
         from __future__ import print_function # to run this code under python27
+        from collections import defaultdict
         import csv
         import math
         import sys
