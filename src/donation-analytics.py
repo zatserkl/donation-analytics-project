@@ -1,18 +1,18 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 11, 2018
 
 from __future__ import print_function # to run this code under python27
-
+from collections import defaultdict
 import csv
 import math
-import parser # my module
 import sys
 
-from collections import defaultdict
+import parser # my module
 
 
 def donorID(name, zip_code):
     """User is identified by its name and zip_code only"""
     return (name, zip_code)
+
 
 def recipientID(recipient, zip_code, year):
     """recipient from zip_code at year"""
