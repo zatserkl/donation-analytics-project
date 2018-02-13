@@ -9,12 +9,12 @@ import sys
 import parser
 
 
-def donorID(name, zip_code):
+def get_donor_id(name, zip_code):
     """User is identified by its name and zip_code only"""
     return name, zip_code
 
 
-def recipientID(recipient, zip_code, year):
+def get_recipient_id(recipient, zip_code, year):
     """recipient from zip_code at year"""
     return recipient, zip_code, year
 
@@ -68,13 +68,13 @@ if __name__ == "__main__":
         amount = parser.amount
 
         # create a donor_id
-        donor_id = donorID(donor_name, zip_code)
+        donor_id = get_donor_id(donor_name, zip_code)
 
         if donor_id in donors_all:
             # this is a repeat donor
 
             # append the amount to list of donations for the recipient
-            recipient_id = recipientID(recipient, zip_code, year)
+            recipient_id = get_recipient_id(recipient, zip_code, year)
             recipients_all[recipient_id].append(amount)
 
             # find the donation by percentile
