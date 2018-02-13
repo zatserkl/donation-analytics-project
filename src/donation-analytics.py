@@ -20,9 +20,6 @@ def recipientID(recipient, zip_code, year):
 
 if __name__ == "__main__":
 
-    for i, fname in enumerate(sys.argv):
-        print(i, fname)
-
     if len(sys.argv) < 3:
         print("Usage: python", __file__, "input_file percentile_file output_file")
         exit(0)
@@ -31,14 +28,17 @@ if __name__ == "__main__":
     fname_percentile = sys.argv[2]
     fname_output = sys.argv[3]
 
-    print(fname_itcont, fname_percentile, fname_output)
-
     try:
         file_itcont = open(fname_itcont, 'r')
         file_output = open(fname_output, 'w')
 
         with open(fname_percentile) as file_percentile:
-            percentile = int(file_percentile.readline())
+            try:
+                percentile_str = file_percentile.readline()
+                percentile = int(percentile_str)
+            except ValueError:
+                print("Malformed percentile value", percentile_str)
+                exit(0)
 
     except IOError as e:
         print("IOError Exception:", e)

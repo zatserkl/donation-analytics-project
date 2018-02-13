@@ -96,7 +96,7 @@ class LineParser:
 
         self.recipient = line[CMTE_ID]
         self.donor_name = line[NAME]
-        self.zip_code = line[ZIP_CODE]
+        self.zip_code = line[ZIP_CODE][:5]
         self.year = line[TRANSACTION_DT][4:];
 
         return True
