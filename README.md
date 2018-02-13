@@ -1,17 +1,23 @@
 # Table of Contents
-1. [Python vesion](README.md#Pyhon-version)
+1. [Python version](README.md#Pyhon-version)
 2. [Description of the method](README.md#Description-of-the-method)
 2. [Discussion](README.md#Discussion)
                 
-# Python vesion
+# Python version
 
-I developed this code under Python 3.6.3:
+The code was developed with Python 3.6.3:
 
-donation-analytics-project$ python --version
+        donation-analytics-project$ python --version
+        Python 3.6.3 :: Anaconda custom (64-bit)
 
-Python 3.6.3 :: Anaconda custom (64-bit)
+The code seems to be runnable also with Python 2.7.14 (Anaconda) and Python 2.7.10 (macOS High Sierra).
 
-The code seems to be runnable also under Python 2.7.14 (Anaconda) and Python 2.7.10 (macOS High Sierra).
+The code imports standard modules:
+
+        from __future__ import print_function # to run this code under python27
+        import csv
+        import math
+        import sys
 
 # Description of the method
 
