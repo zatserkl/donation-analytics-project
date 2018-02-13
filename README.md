@@ -24,8 +24,8 @@ The code imports standard modules:
 Technically the code fills up a dictionary:
 
         key:    a tuple of the recipient's ID (alpha-numeric code), zip_code of the donors, and year
-        
-        value:  a list of contributions
+
+        value:  a list of contributions that come from repeated donors with the key's zip_code
 
 The code uses contributions from the repeated donors only. To mark the donor as a repeat donor, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into a Python set. 
 
