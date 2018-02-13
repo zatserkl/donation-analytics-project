@@ -27,9 +27,7 @@ After every update of the dictionary value (append the current contribution to t
 
 # Discussion
 
-A brief investigation shows that
-
-I used the first 700,000 lines of the indiv18/itcont.txt and found that most of the donations came from the repeat donors:
+A brief investigation shows that the most contributions come from the repeat donors.
 
 In the first 700K lines of indiv18/itcont.txt the total number of donations from repeat donors is 417K out of total 550K personal contributions.
 
