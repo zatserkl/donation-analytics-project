@@ -26,14 +26,14 @@ Also, the number of all donors is 236,294 while the number of repeat donors is s
 
 The file input/itcont.txt currently contains the first 500,000 lines of the indiv18/itcont.txt.
 
-From the algorithmic standpoint you have to fill python dictionary with key (recipient, zip\_code, year) using contributions from repeated donors. To find if the donor is a repeated donor you may use a set with the donor id (donor\_name, zip\_code).
+From the algorithmic standpoint you have to fill python dictionary with key (recipient, zip\_code, year) using contributions from repeated donors. A Python set is an effective way to keep id of repeated donors id (donor\_name, zip\_code).
 
 Algorithm
 
 Use set as a fast container to keep id of the donors.
 
 1) read current line
-2) create a donor_id
+2) create a donor\_id
 3) find if the donor is a repeated donor (use set)
 
         if not:
