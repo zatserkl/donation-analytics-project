@@ -81,7 +81,7 @@ if __name__ == "__main__":
             n_donations = len(recipients_all[recipient_id])
             index = int(math.ceil(n_donations * percentile / 100.) - 1)
             if index < 0:
-                index = 0                   # if pecentile == 0
+                index = 0                   # if percentile == 0
             if index >= n_donations:
                 index = n_donations - 1     # if percentile > 100
 
