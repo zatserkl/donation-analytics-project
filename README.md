@@ -28,11 +28,11 @@ The code seems to be runnable also under Python 2.7.14 (Anaconda) and Python 2.7
 
 Technically the code fills up a dictionary:
 
-        key:    a tuple of the recipient code, zip\_code of the donors, and year
+        key:    a tuple of the recipient code, zip_code of the donors, and year
         
-        value:  a list of contributions.
+        value:  a list of contributions
 
-The code takes data from the repeated donors. To mark the repeat donors, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into Python set, so if ID of the donor from the current line is in the set, the donor is a repeat donor. 
+The code takes data from the repeated donors. To mark the donor as a repeat donor, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into a Python set. 
 
 Technically the code fills up a dictionary with a key that is a tuple of the recipient code, zip\_code of the donors, and year and a value that is a list of contributions. The code takes data from the repeated donors. To mark the repeat donors, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into Python set, so if ID of the donor from the current line is in the set, the donor is a repeat donor. 
 
