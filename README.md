@@ -34,6 +34,8 @@ Technically the code fills up a dictionary:
 
 The code takes data from the repeated donors. To mark the donor as a repeat donor, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into a Python set. 
 
+After every update of the dictionary value, the code calculates sum of the contributions, finds a contribution for the given percentile and streams the line into the output file.
+
 Technically the code fills up a dictionary with a key that is a tuple of the recipient code, zip\_code of the donors, and year and a value that is a list of contributions. The code takes data from the repeated donors. To mark the repeat donors, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into Python set, so if ID of the donor from the current line is in the set, the donor is a repeat donor. 
 
 A Method to select and other remarks.
