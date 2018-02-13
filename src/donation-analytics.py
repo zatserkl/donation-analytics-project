@@ -38,6 +38,7 @@ if __name__ == "__main__":
         file_output = open(fname_output, 'w')
 
         with open(fname_percentile) as file_percentile:
+            percentile_str = ""
             try:
                 percentile_str = file_percentile.readline()
                 percentile = int(percentile_str)
