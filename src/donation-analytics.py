@@ -60,6 +60,12 @@ if __name__ == "__main__":
         print("IOError Exception:", e)
         exit(0)
 
+    reader = reader.Reader(file_itcont)
+    reader.get_line()
+    print("reader.line_number:", reader.line_number)
+    reader.get_line()
+    print("reader.line_number:", reader.line_number)
+
     reader = csv.reader(file_itcont, delimiter='|')
     writer = csv.writer(file_output, delimiter='|')
 
