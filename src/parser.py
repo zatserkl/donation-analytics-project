@@ -1,5 +1,4 @@
 import csv
-import math
 
 class LineParser:
     """ Parses line and provides basic checks.

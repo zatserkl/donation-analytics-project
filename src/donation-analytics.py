@@ -18,22 +18,6 @@ def recipientID(recipient, zip_code, year):
     return (recipient, zip_code, year)
 
 
-def read_file(fname):
-    fields_str = "CMTE_ID AMNDT_IND RPT_TP TRANSACTION_PGI IMAGE_NUM " \
-            "TRANSACTION_TP ENTITY_TP NAME CITY STATE ZIP_CODE EMPLOYER " \
-            "OCCUPATION TRANSACTION_DT TRANSACTION_AMT OTHER_ID TRAN_ID " \
-            "FILE_NUM MEMO_CD MEMO_TEXT SUB_ID"
-
-    print(fields_str)
-
-    fields = fields_str.split()
-    print("fields =", fields)
-    # print("fields[10] =", fields[10])
-    print()
-
-    # with open(fname) as file:
-
-
 if __name__ == "__main__":
 
     for i, fname in enumerate(sys.argv):
@@ -63,8 +47,8 @@ if __name__ == "__main__":
     reader = csv.reader(file_itcont, delimiter='|')
     writer = csv.writer(file_output, delimiter='|')
 
-    donors_all = set()                  # all donors_id
-    recipients_all = defaultdict(list)  # {recipient_id: [contributions]}
+    donors_all = set()                  # set for all donors_id
+    recipients_all = defaultdict(list)  # dict {recipient_id: [donations]}
 
     parser = parser.LineParser()
 
@@ -82,13 +66,19 @@ if __name__ == "__main__":
         donor_id = donorID(donor_name, zip_code)
 
         if donor_id in donors_all:
-            # this is a repeat donor: process the donation
+            # this is a repeat donor
+
+            # append the amount to list of donations for the recipient
             recipient_id = recipientID(recipient, zip_code, year)
             recipients_all[recipient_id].append(amount)
 
             # find the donation by percentile
             n_donations = len(recipients_all[recipient_id])
             index = math.ceil(n_donations * percentile / 100) - 1
+            if index < 0:
+                index = 0               # if pecentile == 0
+            if index >= n_donations:
+                index = n_donations - 1 # if percentile > 100
 
             recipients_all[recipient_id].sort() # sort in increasing order
             percentile_amount = recipients_all[recipient_id][index]
