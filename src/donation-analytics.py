@@ -32,6 +32,7 @@ if __name__ == "__main__":
 
     file_itcont = None
     file_output = None
+    percentile = 0
     try:
         file_itcont = open(fname_itcont, 'r')
         file_output = open(fname_output, 'w')
