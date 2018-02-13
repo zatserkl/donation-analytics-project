@@ -1,12 +1,12 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 11, 2018
 
-from __future__ import print_function # to run this code under python27
+from __future__ import print_function       # to run this code under python27
 from collections import defaultdict
 import csv
 import math
 import sys
 
-import parser # my module
+import parser
 
 
 def donorID(name, zip_code):
@@ -30,6 +30,8 @@ if __name__ == "__main__":
     fname_percentile = sys.argv[2]
     fname_output = sys.argv[3]
 
+    file_itcont = None
+    file_output = None
     try:
         file_itcont = open(fname_itcont, 'r')
         file_output = open(fname_output, 'w')
@@ -78,14 +80,14 @@ if __name__ == "__main__":
             n_donations = len(recipients_all[recipient_id])
             index = int(math.ceil(n_donations * percentile / 100.) - 1)
             if index < 0:
-                index = 0               # if pecentile == 0
+                index = 0                   # if pecentile == 0
             if index >= n_donations:
-                index = n_donations - 1 # if percentile > 100
+                index = n_donations - 1     # if percentile > 100
 
-            recipients_all[recipient_id].sort() # sort in increasing order
+            recipients_all[recipient_id].sort()     # sort in increasing order
             percentile_amount = recipients_all[recipient_id][index]
             ipercentile_amount = int(percentile_amount + 0.50)
-            
+
             amount_sum = sum(recipients_all[recipient_id])
             iamount_sum = int(amount_sum)
             writer.writerow((recipient, zip_code, year, ipercentile_amount,
