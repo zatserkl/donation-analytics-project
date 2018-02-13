@@ -27,7 +27,7 @@ Technically the code fills up a dictionary:
 
         value:  a list of contributions that come from repeated donors with the key's zip_code
 
-The code uses contributions from the repeated donors only. To mark the donor as a repeat donor, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into a Python set. 
+The code uses contributions from the repeated donors only. To mark the donor as a repeat donor, the code places an ID of each new donor (a tuple with the donor name and donor zip\_code) into the Python's set. 
 
 After every update of the dictionary value (append the current contribution to the list of contributions), the code calculates a sum of the contributions, finds a contribution for the given percentile and streams the line into the output file.
 
