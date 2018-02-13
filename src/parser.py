@@ -1,6 +1,7 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 12, 2018
 
-from __future__ import print_function # to run this code under python27
+from __future__ import print_function       # to run this code under python27
+
 
 class LineParser:
     """ Parses line and provides basic checks.
@@ -99,6 +100,6 @@ class LineParser:
         self.recipient = line[CMTE_ID]
         self.donor_name = line[NAME]
         self.zip_code = line[ZIP_CODE][:5]
-        self.year = line[TRANSACTION_DT][4:];
+        self.year = line[TRANSACTION_DT][4:]
 
         return True
