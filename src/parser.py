@@ -1,13 +1,12 @@
 import csv
 import math
 
-class Reader:
-    """ Reads lines of the input file and provides basic checks.
+class LineParser:
+    """ Parses line and provides basic checks.
     """
 
-    def __init__(self, file_input):
+    def __init__(self):
         self.debug = True
-        self.reader = csv.reader(file_input, delimiter='|')
 
     def clear(self):
         """ Clear the data field before read of the line
@@ -18,21 +17,19 @@ class Reader:
         self.year = ""
         self.amount = 0.
 
-    def get_line(self):
+    def parse(self, line):
         """ Takes the next line from the input file, assign variables and
             carries out basic checks.
             Returns True for the valid line.
         """
+
+        self.clear()
 
         # set values to the local variables for the columns indices
         CMTE_ID, AMNDT_IND, RPT_TP, TRANSACTION_PGI, IMAGE_NUM, \
         TRANSACTION_TP, ENTITY_TP, NAME, CITY, STATE, ZIP_CODE, EMPLOYER, \
         OCCUPATION, TRANSACTION_DT, TRANSACTION_AMT, OTHER_ID, TRAN_ID, \
         FILE_NUM, MEMO_CD, MEMO_TEXT, SUB_ID = range(21)
-
-        line = next(self.reader)
-        self.line_number = self.reader.line_num
-        self.clear()
 
         if len(line[OTHER_ID]) > 0:
             if self.debug:
@@ -58,6 +55,11 @@ class Reader:
             if self.debug:
                 print("empty TRANSACTION_AMT")
             return False    # empty amount field
+
+        if len(line[ZIP_CODE]) < 5:
+            if self.debug:
+                print("Malformed ZIP_CODE")
+            return False
 
         self.recipient = line[CMTE_ID]
         self.donor_name = line[NAME]
