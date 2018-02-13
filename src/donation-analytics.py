@@ -1,6 +1,6 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 8, 2018
 
-import reader
+import parser
 
 import sys
 import csv
@@ -60,64 +60,23 @@ if __name__ == "__main__":
         print("IOError Exception:", e)
         exit(0)
 
-    reader = reader.Reader(file_itcont)
-    reader.get_line()
-    print("reader.line_number:", reader.line_number)
-    reader.get_line()
-    print("reader.line_number:", reader.line_number)
-
     reader = csv.reader(file_itcont, delimiter='|')
     writer = csv.writer(file_output, delimiter='|')
 
     donors_all = set()                  # all donors_id
     recipients_all = defaultdict(list)  # {recipient_id: [contributions]}
 
-    nlines_empty_zip_code = []
+    parser = parser.LineParser()
 
-    valid_donations = 0
-
-    nlines = 0                          # make the name nlines global
-
-    for nlines, line in enumerate(reader):
-
-        if len(line[15]) > 0:
-            continue            # this is not a person contribution
-
-        # for information purpose only
-        if len(line[10]) == 0:
-            nlines_empty_zip_code.append(nlines)
-
-        recipient = line[0]
-        if len(recipient) == 0:
-            continue
-        
-        donor_name = line[7]
-        if len(donor_name) == 0:
+    for line in reader:
+        if not parser.parse(line):
             continue
 
-        zip_code = line[10][:5]
-        if len(zip_code) < 5:
-            continue
-
-        # process the year: convert to int
-        try:
-            year = int(line[13][4:])
-        except ValueError as e:
-            # print("--- Error castling year as int for", line[13])
-            continue
-
-        # process the amount: convert to float
-        try:
-            amount = int(line[14])
-        except ValueError as e:
-            # print("--- Error castling amount as float for", line[14])
-            continue
-        
-        valid_donations += 1
-
-        #
-        # the donation is valid, process it
-        #
+        recipient = parser.recipient
+        donor_name = parser.donor_name
+        zip_code = parser.zip_code
+        year = parser.year
+        amount = parser.amount
 
         # create a donor_id
         donor_id = donorID(donor_name, zip_code)
@@ -141,12 +100,6 @@ if __name__ == "__main__":
                             len(recipients_all[recipient_id])))
         else:
             donors_all.add(donor_id)    # register the donor
-
-        ################## end of processing ##################
-
-    # print("read", nlines, "lines")
-    # print("found", len(nlines_empty_zip_code), "lines with empty zip code")
-    # print("nlines_empty_zip_code[:10]:", nlines_empty_zip_code[:10])
 
     file_itcont.close()
     file_output.close()
