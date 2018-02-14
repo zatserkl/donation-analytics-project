@@ -46,12 +46,12 @@ Therefore, the code searches the dictionary with repeated donors first. Then if 
 
 # Remarks on the code implementation
 
-The variables for the column numbers in the module parser.py are made in upper case intentionally because they were not typed but copied/pasted from the documentation (to avoid typos).
-
 The package consists of three modules.
 
 ### parser.py
-Contains class LineParser that carries out the basic checks on the current line and extracts data of interest
+Contains class LineParser that carries out the basic checks on the current line and extracts data of interest. 
+
+Note: The variables for the column numbers in the module parser.py are made in upper case intentionally because they were not typed but copied/pasted from the documentation (to avoid typos).
 
 ### processor.py
 Contains class DonationProcessor that processes clean data from the current line provided by LineParser. It also contains general purpose functions get\_donor\_id() and get\_recipient\_id() that can be used for the data analysis in the calling routine.
