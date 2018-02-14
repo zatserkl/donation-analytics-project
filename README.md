@@ -54,7 +54,7 @@ The package consists of three modules.
 Contains class LineParser that carries out the basic checks on the current line and extracts data of interest
 
 ### processor.py
-Contains class DonationProcessor that processes clean data from the current line provided by LineParser. It also contains general purpose functions that can be used for the data analysis in the calling routine.
+Contains class DonationProcessor that processes clean data from the current line provided by LineParser. It also contains general purpose functions get\_donor\_id() and get\_recipient\_id() that can be used for the data analysis in the calling routine.
 
 The containers of the DonationProcessor can be analyzed after finishing processing of the input file.
 
