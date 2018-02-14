@@ -2,7 +2,7 @@
 1. [Python version](README.md#Pyhon-version)
 2. [Description of the method](README.md#Description-of-the-method)
 2. [Discussion](README.md#Discussion)
-3. [Remarks on the code implementation](README.md#Remarks-on-the-code-implementation)
+3. [Code implementation](README.md#Code-implementation)
                 
 # Python version
 
@@ -44,7 +44,7 @@ Also, the number of all donors is 237K while the number of repeat donors is smal
 
 Therefore, the code searches the dictionary with repeated donors first. Then if the search over the dictionary of repeat donors fails, it runs search over the set with all donors. It is worth mentioning that both Python's set and dictionary are very efficient for the search with the time complexity of O(1).
 
-# Remarks on the code implementation
+# Code implementation
 
 The package consists of three modules.
 
