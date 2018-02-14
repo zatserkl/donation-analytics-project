@@ -60,5 +60,6 @@ The containers of the DonationProcessor can be analyzed after finishing processi
 
 ### donation-analytics.py
 The function donation\_analytics() creates instances of the LineParser and DonationProcessor.
-
 This function can be extended for analysis of the data stored in the DonationProcessor containers.
+
+It also contains the main function that receives command-line argument and perform basic IO operations on opening and closing files. It also calls the function donation\_analytics().
