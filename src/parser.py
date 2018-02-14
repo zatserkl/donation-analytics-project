@@ -20,9 +20,10 @@ class LineParser:
         self.amount = 0.
 
     def parse(self, line):
-        """ Parses line from the input file, assigns variables and
-            carries out basic checks.
-            Returns True for the valid line, False otherwise.
+        """
+        Parses line from the input file, assigns variables and
+        carries out basic checks.
+        Returns True for the valid line, False otherwise.
         """
 
         self.clear()

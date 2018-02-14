@@ -1,33 +1,29 @@
 # Andriy Zatserklyaniy <zatserkl@gmail.com> Feb 11, 2018
 
 from __future__ import print_function       # to run this code under python27
-from collections import defaultdict
 import csv
-import math
 import sys
 
 import parser
+import processor
 
 
-def get_donor_id(name, zip_code):
-    """User is identified by its name and zip_code only"""
-    return name, zip_code
-
-
-def get_recipient_id(recipient, zip_code, year):
-    """recipient from zip_code at year"""
-    return recipient, zip_code, year
-
-
-def dollars_cents(amount):
-    """ Returns a string
-        100     for float numbers 100, 100. or 100.0
-        100.10  for the float number 100.10
+def donation_analytics(reader, percentile, writer):
     """
-    if amount > int(amount):
-        return "{0:.2f}".format(amount)
-    else:
-        return "{0:.0f}".format(amount)
+    Creates instances of line parser and donation processor.
+    Can be extended for the analysis of data stored in the
+    containers of the DonationProcessor class after the loop.
+    """
+
+    lineParser = parser.LineParser()
+    donationProcessor = processor.DonationProcessor()
+
+    for line in reader:
+        if not lineParser.parse(line):
+            continue
+
+        # process donation data stored in lineParser
+        donationProcessor.process_donation(lineParser, percentile, writer)
 
 
 if __name__ == "__main__":
@@ -64,59 +60,7 @@ if __name__ == "__main__":
     reader = csv.reader(file_itcont, delimiter='|')
     writer = csv.writer(file_output, delimiter='|')
 
-    donors_all = set()                  # set for all donors_id
-    recipients_all = defaultdict(list)  # dict {recipient_id: [donations]}
-
-    parser = parser.LineParser()
-
-    for line in reader:
-        if not parser.parse(line):
-            continue
-
-        recipient = parser.recipient
-        donor_name = parser.donor_name
-        zip_code = parser.zip_code
-        year = parser.year
-        amount = parser.amount
-
-        # create a donor_id
-        donor_id = get_donor_id(donor_name, zip_code)
-
-        if donor_id in donors_all:
-            # this is a repeat donor
-
-            # append the amount to list of donations for the recipient
-            recipient_id = get_recipient_id(recipient, zip_code, year)
-            recipients_all[recipient_id].append(amount)
-
-            # find the donation by percentile
-            n_donations = len(recipients_all[recipient_id])
-            index = int(math.ceil(n_donations * percentile / 100.) - 1)
-            if index < 0:
-                index = 0                   # if percentile == 0
-            if index >= n_donations:
-                index = n_donations - 1     # if percentile > 100
-
-            recipients_all[recipient_id].sort()     # sort in increasing order
-            percentile_amount = recipients_all[recipient_id][index]
-            percentile_amount_str = dollars_cents(percentile_amount)
-
-            amount_sum = sum(recipients_all[recipient_id])
-            amount_sum_str = dollars_cents(amount_sum)
-            writer.writerow((recipient, zip_code, year, percentile_amount_str,
-                             amount_sum_str, len(recipients_all[recipient_id])))
-        else:
-            # this is a first time donor
-            donors_all.add(donor_id)    # register the donor: place into set
+    donation_analytics(reader, percentile, writer)
 
     file_itcont.close()
     file_output.close()
-
-    # show nlines_max lines from the output file
-    nlines_max = 10
-    with open(fname_output) as file_output:
-        reader = csv.reader(file_output, delimiter='|')
-        for nlines, line in enumerate(reader):
-            print(line)
-            if nlines == nlines_max:
-                break
