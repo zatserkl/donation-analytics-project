@@ -58,7 +58,7 @@ if __name__ == "__main__":
         exit(0)
 
     reader = csv.reader(file_itcont, delimiter='|')
-    writer = csv.writer(file_output, delimiter='|')
+    writer = csv.writer(file_output, delimiter='|', lineterminator='\n')
 
     donation_analytics(reader, percentile, writer)
 
