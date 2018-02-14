@@ -54,9 +54,9 @@ Contains class LineParser that carries out the basic checks on the current line 
 Note: The variables for the column numbers in the module parser.py are made in upper case intentionally because they were not typed but copied/pasted from the documentation (to avoid typos).
 
 ### processor.py
-Contains class DonationProcessor that processes clean data from the current line provided by LineParser. It also contains general purpose functions get\_donor\_id() and get\_recipient\_id() that can be used for the data analysis in the calling routine.
+Contains class DonationProcessor that processes clean data from the current line provided by LineParser. It also contains general purpose functions get\_donor\_id() and get\_recipient\_id().
 
-The containers of the DonationProcessor can be analyzed after finishing processing of the input file.
+The containers of the DonationProcessor can be analyzed in the calling routine after finishing processing of the input file.
 
 ### donation-analytics.py
 The function donation\_analytics() creates instances of the LineParser and DonationProcessor.
