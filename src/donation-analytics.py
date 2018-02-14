@@ -41,8 +41,8 @@ if __name__ == "__main__":
     file_output = None
     percentile = 0
     try:
-        file_itcont = open(fname_itcont, 'r')
-        file_output = open(fname_output, 'w')
+        file_itcont = open(fname_itcont, 'r+')
+        file_output = open(fname_output, 'w+')
 
         with open(fname_percentile) as file_percentile:
             percentile_str = ""
